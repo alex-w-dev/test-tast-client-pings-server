@@ -1,4 +1,4 @@
-import stream from 'stream';
+import stream from "stream";
 
 export async function requestBodyParser(req) {
   if (!(req instanceof stream.Readable)) return;
@@ -12,7 +12,7 @@ export async function requestBodyParser(req) {
     }
     const data = Buffer.concat(buffers).toString();
 
-    req.body = JSON.parse(data)
+    req.body = JSON.parse(data);
   } catch (e) {
     //
   }

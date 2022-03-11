@@ -1,7 +1,7 @@
-import http from 'http';
-import { simulateServerCraziness } from './utils/simulate-request-craziness.js';
-import { requestBodyParser } from './utils/request-body-parser.js';
-import {PingCollection} from './utils/ping-collection.js';
+import http from "http";
+import { simulateServerCraziness } from "./utils/simulate-request-craziness.js";
+import { requestBodyParser } from "./utils/request-body-parser.js";
+import { PingCollection } from "./utils/ping-collection.js";
 
 const server = http.createServer(async (req, res) => {
   try {
@@ -20,19 +20,18 @@ const server = http.createServer(async (req, res) => {
     }
   } catch (e) {
     res.writeHead(500);
-    console.log(e, 'e');
+    console.log(e, "e");
     res.end();
   }
 });
 server.listen(8080);
 
-
-process.on('exit', () => {
-  console.group(`Ping results:`)
-  console.info(`Median: ${PingCollection.getMedian()}`)
-  console.info(`Mean: ${PingCollection.getMean()}`)
+process.on("exit", () => {
+  console.group(`Ping results:`);
+  console.info(`Median: ${PingCollection.getMedian()}`);
+  console.info(`Mean: ${PingCollection.getMean()}`);
   console.groupEnd();
-})
-process.on('SIGINT', () => {
+});
+process.on("SIGINT", () => {
   process.exit(1);
-})
+});

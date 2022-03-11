@@ -3,7 +3,7 @@ export class PingCollection {
   static _collection = {};
 
   static addPing(ping) {
-    ping = +ping
+    ping = +ping;
 
     if (isNaN(ping)) return;
 
@@ -13,7 +13,6 @@ export class PingCollection {
       this._collection[ping]++;
     }
   }
-
 
   static clear() {
     this._collection = {};
@@ -46,19 +45,25 @@ export class PingCollection {
       }
     }
 
-    return mLeft * mRight / 2
+    return (mLeft * mRight) / 2;
   }
 
   static getMean() {
     const totalCount = this._getTotalCount();
 
-    return totalCount && this._getPingSum() / totalCount || 0
+    return (totalCount && this._getPingSum() / totalCount) || 0;
   }
 
   static _getPingSum() {
-    return Object.entries(this._collection).reduce((sum, [ping, count]) => sum += ping * count, 0)
+    return Object.entries(this._collection).reduce(
+      (sum, [ping, count]) => (sum += ping * count),
+      0
+    );
   }
   static _getTotalCount() {
-    return Object.values(this._collection).reduce((sum, count) => sum += count, 0)
+    return Object.values(this._collection).reduce(
+      (sum, count) => (sum += count),
+      0
+    );
   }
 }
