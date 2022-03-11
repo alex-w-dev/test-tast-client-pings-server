@@ -1,3 +1,8 @@
 {
+  "scripts": {
+    "client": "node client",
+    "server": "node server",
+    "server:test": "node server/tests"
+  },
   "type": "module"
 }
