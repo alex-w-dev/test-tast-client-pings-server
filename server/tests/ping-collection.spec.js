@@ -51,3 +51,34 @@ describe("difficult pings", () => {
     expect(PingCollection.getMedian()).toBeEqual(8);
   });
 });
+
+describe("'0' pings", () => {
+  PingCollection.clear();
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+  PingCollection.addPing(0);
+
+  it("should correct mean", function () {
+    expect(Math.round(PingCollection.getMean())).toBeEqual(0);
+  });
+  it("should correct median", function () {
+    expect(PingCollection.getMedian()).toBeEqual(0);
+  });
+});
+
+describe("no pings added", () => {
+  PingCollection.clear();
+
+  it("should correct mean", function () {
+    expect(Math.round(PingCollection.getMean())).toBeEqual(0);
+  });
+  it("should correct median", function () {
+    expect(PingCollection.getMedian()).toBeEqual(0);
+  });
+});

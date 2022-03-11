@@ -11,6 +11,7 @@ const server = http.createServer(async (req, res) => {
       await requestBodyParser(req);
 
       console.log(req.body);
+      PingCollection.addPing(req.body.responseTime);
 
       res.writeHead(200);
       res.end("OK");
@@ -28,8 +29,8 @@ server.listen(8080);
 
 process.on("exit", () => {
   console.group(`Ping results:`);
-  console.info(`Median: ${PingCollection.getMedian()}`);
-  console.info(`Mean: ${PingCollection.getMean()}`);
+  console.info(`Median: ${Math.round(PingCollection.getMedian() * 10) / 10}`);
+  console.info(`Mean: ${Math.round(PingCollection.getMean() * 10) / 10}`);
   console.groupEnd();
 });
 process.on("SIGINT", () => {
